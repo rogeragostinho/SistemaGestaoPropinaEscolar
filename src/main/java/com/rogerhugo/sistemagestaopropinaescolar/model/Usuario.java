@@ -6,6 +6,12 @@ public class Usuario {
     private String nome;
     private String senha;
 
+    public Usuario(String senha, String nome, String tipo) {
+        this.senha = senha;
+        this.nome = nome;
+        this.tipo = tipo;
+    }
+
     public Usuario(int id, String senha, String nome, String tipo) {
         this.id = id;
         this.senha = senha;

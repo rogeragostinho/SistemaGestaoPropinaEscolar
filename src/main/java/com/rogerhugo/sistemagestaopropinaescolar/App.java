@@ -1,16 +1,28 @@
 package com.rogerhugo.sistemagestaopropinaescolar;
 
 import com.rogerhugo.sistemagestaopropinaescolar.model.Aluno;
+import com.rogerhugo.sistemagestaopropinaescolar.model.Usuario;
 import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
+import com.rogerhugo.sistemagestaopropinaescolar.service.UsuarioService;
 
 public class App {
     public static void main(String[] args) {
-        //System.out.println(AlunoService.getInstance().registrar(new Aluno("Róger Hugo", "EI1A", "2º", "Engenharia Informática")));
+        // TESTE Alunos
+            //System.out.println(AlunoService.getInstance().registar(new Aluno("Adão", "EI1A", "2º", "Engenharia Informática")));
 
-        //System.out.println(AlunoService.getInstance().atualizar(2, new Aluno("Róger Agostinho", "EI1A", "2º", "Engenharia Informática")));
+            //System.out.println(AlunoService.getInstance().atualizar(5, new Aluno("Hugo", "EI2A", "2º", "Engenharia Informática")));
 
-        //System.out.println(AlunoService.getInstance().eliminar(3));
+            //System.out.println(AlunoService.getInstance().eliminar(5));
 
-        System.out.println(AlunoService.getInstance().pegarTodos());
+            //System.out.println(AlunoService.getInstance().pegarTodos());
+
+        // TESTE usuarios
+        //System.out.println(UsuarioService.getInstance().registar(new Usuario("operador", "Hugo", "123")));
+
+        //System.out.println(UsuarioService.getInstance().atualizar(1, new Usuario("financeiro", "Hugo", "123")));
+
+        //System.out.println(UsuarioService.getInstance().eliminar(1));
+
+        System.out.println(UsuarioService.getInstance().pegarTodos());
     }
 }
