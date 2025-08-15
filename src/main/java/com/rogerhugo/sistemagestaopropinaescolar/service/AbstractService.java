@@ -23,7 +23,7 @@ public abstract class AbstractService<T, R extends AbstractRepository<T>> implem
 
     @Override
     public T pegar(int id) {
-        return (T) repository.findById(id);
+        return repository.findById(id);
     }
 
     @Override

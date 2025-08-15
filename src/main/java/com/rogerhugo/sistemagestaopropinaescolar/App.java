@@ -2,6 +2,7 @@ package com.rogerhugo.sistemagestaopropinaescolar;
 
 import com.rogerhugo.sistemagestaopropinaescolar.model.Aluno;
 import com.rogerhugo.sistemagestaopropinaescolar.model.Usuario;
+import com.rogerhugo.sistemagestaopropinaescolar.presentation.LoginView;
 import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
 import com.rogerhugo.sistemagestaopropinaescolar.service.UsuarioService;
 
@@ -16,6 +17,8 @@ public class App {
 
             //System.out.println(AlunoService.getInstance().pegarTodos());
 
+            //System.out.println(AlunoService.getInstance().pegar(1));
+
         // TESTE usuarios
         //System.out.println(UsuarioService.getInstance().registar(new Usuario("operador", "Hugo", "123")));
 
@@ -23,6 +26,8 @@ public class App {
 
         //System.out.println(UsuarioService.getInstance().eliminar(1));
 
-        System.out.println(UsuarioService.getInstance().pegarTodos());
+        //System.out.println(UsuarioService.getInstance().pegarTodos());
+
+        /*LoginView loginView = */new LoginView();
     }
 }

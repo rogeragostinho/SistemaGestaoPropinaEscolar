@@ -30,4 +30,24 @@ public class UsuarioRepository extends AbstractRepository<Usuario> {
     public Usuario findByNome(String nome) {
         return null;
     }
+
+    public Usuario findByNomeAndSenha(String nome, String senha) {
+        String sql = String.format("SELECT * FROM %s WHERE nome = ? AND senha = ?", table);
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);)
+        {
+            ps.setString(1, nome);
+            ps.setString(2, senha);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next())
+                return mapResultSet(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

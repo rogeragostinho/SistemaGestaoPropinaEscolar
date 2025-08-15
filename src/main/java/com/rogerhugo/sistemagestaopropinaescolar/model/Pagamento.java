@@ -10,6 +10,14 @@ public class Pagamento {
     private int anoLetivo;
     private int idAluno;
 
+    public Pagamento(int idAluno, int anoLetivo, int mesLetivo, double valor, Date data) {
+        this.idAluno = idAluno;
+        this.anoLetivo = anoLetivo;
+        this.mesLetivo = mesLetivo;
+        this.valor = valor;
+        this.data = data;
+    }
+
     public Pagamento(int id, int idAluno, int anoLetivo, int mesLetivo, double valor, Date data) {
         this.id = id;
         this.idAluno = idAluno;

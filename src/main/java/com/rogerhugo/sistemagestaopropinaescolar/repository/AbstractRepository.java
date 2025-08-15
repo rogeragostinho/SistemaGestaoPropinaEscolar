@@ -42,10 +42,11 @@ public abstract class AbstractRepository<T> implements GenericRepository<T>{
         String sql = String.format("SELECT * FROM %s WHERE id = ?", table);
 
         try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery();)
+             PreparedStatement ps = conn.prepareStatement(sql);)
         {
             ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next())
                 return mapResultSet(rs);
@@ -63,8 +64,8 @@ public abstract class AbstractRepository<T> implements GenericRepository<T>{
         String sql = String.format("SELECT * FROM %s", table);
 
         try (Connection conn = ConnectionFactory.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql);)
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery();)
         {
             while (rs.next())
                 list.add(mapResultSet(rs));;
