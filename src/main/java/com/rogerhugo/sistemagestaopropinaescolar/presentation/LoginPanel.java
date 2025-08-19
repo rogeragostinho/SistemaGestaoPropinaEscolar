@@ -1,29 +1,32 @@
 package com.rogerhugo.sistemagestaopropinaescolar.presentation;
 
+import com.rogerhugo.sistemagestaopropinaescolar.service.LoginService;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginView extends JFrame {
+public class LoginPanel extends JPanel {
     private JLabel labelNome;
     private JLabel labelSenha;
     protected JTextField textFieldNome;
-    protected JTextField textFieldSenha;
+    protected JPasswordField textFieldSenha;
     protected JButton button;
     private JPanel panelCenter;
-    public LoginView() {
-        super("Login");
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
+
+    private MainFrame main;
+
+    public LoginPanel(MainFrame mainFrame) {
+        //setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+
+        main = mainFrame;
 
         initComponents();
         addListeners();
 
-        setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
-        setSize(300, 200);
-        setResizable(false);
-        setLocationRelativeTo(null); // inicia no centro da tela
+        setSize(300, 200); // inicia no centro da tela
         setVisible(true);
     }
 
@@ -36,7 +39,7 @@ public class LoginView extends JFrame {
         labelSenha = new JLabel("Senha");
 
         textFieldNome = new JTextField(6);
-        textFieldSenha = new JTextField(6);
+        textFieldSenha = new JPasswordField(6);
 
         button = new JButton("Entrar");
 
@@ -87,15 +90,33 @@ public class LoginView extends JFrame {
         panelCenter.add(component);
     }
 
-    public void addListeners()
-    {
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                new MainWindow();
-                setVisible(false);
-            }
+    public void addListeners() {
+        button.addActionListener(e -> {
+            String nome = textFieldNome.getText();
+            String senha = textFieldSenha.getText();
+
+            if (LoginService.getInstance().login(nome, senha))
+                main.setLogado(true);
+            else
+                JOptionPane.showMessageDialog(null, "Erro ao fazer login");
+
+            limparCampos();
         });
+
+        button.registerKeyboardAction(
+            e -> button.doClick(),
+            KeyStroke.getKeyStroke("ENTER"),
+            JComponent.WHEN_FOCUSED
+        );
+
+        ActionListener action = e -> button.doClick();
+        textFieldNome.addActionListener(action);
+        textFieldSenha.addActionListener(action);
+    }
+
+    private void limparCampos() {
+        textFieldNome.setText("");
+        textFieldSenha.setText("");
+        textFieldNome.requestFocusInWindow();
     }
 }

@@ -17,7 +17,7 @@ public class LoginService extends AbstractService<Usuario, UsuarioRepository>{
 
     public boolean login(String nome, String senha) {
         this.user = repository.findByNomeAndSenha(nome, senha);
-        return this.user != null;
+        return isLoged();
     }
 
     public boolean logout() {
@@ -27,5 +27,9 @@ public class LoginService extends AbstractService<Usuario, UsuarioRepository>{
 
     public Usuario getUser() {
         return this.user;
+    }
+
+    public boolean isLoged() {
+        return this.user != null;
     }
 }

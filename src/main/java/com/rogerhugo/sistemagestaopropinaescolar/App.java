@@ -1,10 +1,8 @@
 package com.rogerhugo.sistemagestaopropinaescolar;
 
-import com.rogerhugo.sistemagestaopropinaescolar.model.Aluno;
-import com.rogerhugo.sistemagestaopropinaescolar.model.Usuario;
-import com.rogerhugo.sistemagestaopropinaescolar.presentation.LoginView;
-import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
-import com.rogerhugo.sistemagestaopropinaescolar.service.UsuarioService;
+import com.rogerhugo.sistemagestaopropinaescolar.presentation.MainFrame;
+import com.rogerhugo.sistemagestaopropinaescolar.service.LoginService;
+import test.TestFrame;
 
 public class App {
     public static void main(String[] args) {
@@ -28,6 +26,10 @@ public class App {
 
         //System.out.println(UsuarioService.getInstance().pegarTodos());
 
-        /*LoginView loginView = */new LoginView();
+        //LoginView loginView = new LoginView();
+        //new MainFrame();
+        new TestFrame();
+
+        //System.out.println(LoginService.getInstance().login("Hugo", "operador"));
     }
 }
