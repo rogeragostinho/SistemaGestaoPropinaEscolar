@@ -26,6 +26,7 @@ public class MainPanel extends JPanel {
 
         container.add(panel1, "panel1");
         container.add(panel2, "panel2");
+        container.add(new AlunosPanel(main), "alunos");
 
         add(new MenuPanel(this), BorderLayout.WEST);
         add(container, BorderLayout.CENTER);

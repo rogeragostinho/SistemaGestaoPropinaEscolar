@@ -22,6 +22,6 @@ public class MenuPanel extends JPanel {
 
         button1.addActionListener(e -> main.show("panel1"));
 
-        button2.addActionListener(e -> main.show("panel2"));
+        button2.addActionListener(e -> main.show("alunos"));
     }
 }

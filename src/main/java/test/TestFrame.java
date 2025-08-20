@@ -1,9 +1,6 @@
 package test;
 
-import com.rogerhugo.sistemagestaopropinaescolar.presentation.AlunoFormPanel;
-import com.rogerhugo.sistemagestaopropinaescolar.presentation.LoginPanel;
-import com.rogerhugo.sistemagestaopropinaescolar.presentation.MainPanel;
-import com.rogerhugo.sistemagestaopropinaescolar.service.LoginService;
+import com.rogerhugo.sistemagestaopropinaescolar.presentation.AlunosPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +14,8 @@ public class TestFrame extends JFrame {
         super("Test");
         setLayout(new BorderLayout());
 
-        add(new AlunoFormPanel());
+        //add(new AlunoFormPanel());
+        add(new AlunosPanel(this));
 
         setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
         setSize(800, 500);

@@ -18,7 +18,6 @@ public class LoginPanel extends JPanel {
     private MainFrame main;
 
     public LoginPanel(MainFrame mainFrame) {
-        //setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         main = mainFrame;
