@@ -5,7 +5,7 @@ import com.rogerhugo.sistemagestaopropinaescolar.model.Aluno;
 import javax.swing.*;
 import java.awt.*;
 
-public class AlunoFormDialog extends JDialog {
+public abstract class AlunoFormDialog extends JDialog {
     protected JTextField textFieldNome;
     protected JTextField textFieldClasse;
     protected JTextField textFieldCurso;
@@ -14,24 +14,28 @@ public class AlunoFormDialog extends JDialog {
     private JLabel labelClasse;
     private JLabel labelCurso;
     private JLabel labelTurma;
-    private JButton button;
+    protected JButton button;
     private JPanel panelCenter;
 
     protected Aluno aluno;
 
-    public AlunoFormDialog(JFrame own, String titulo, Aluno aluno) {
+    public AlunoFormDialog(JFrame own, String titulo) {
         super(own, titulo, true);
         setLayout(new BorderLayout(60, 40));
 
-        this.aluno = aluno;
-
         initComponents();
+        addListeners();
 
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setSize(400, 400);
         setResizable(false);
-        //setLocationRelativeTo(own);
+        setLocationRelativeTo(own);
         setLocationRelativeTo(null);
+    }
+
+    public AlunoFormDialog(JFrame own, String titulo, Aluno aluno) {
+        super(own, titulo);
+        this.aluno = aluno;
     }
 
     private void initComponents() {
@@ -86,4 +90,6 @@ public class AlunoFormDialog extends JDialog {
         layout.setConstraints(component, constraints);
         panelCenter.add(component);
     }
+
+    protected abstract void addListeners();
 }

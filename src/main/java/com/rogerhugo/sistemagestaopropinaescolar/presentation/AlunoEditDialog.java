@@ -16,4 +16,9 @@ public class AlunoEditDialog extends AlunoFormDialog {
         textFieldCurso = new JTextField(aluno.getCurso(), 1000);
         textFieldTurma = new JTextField(aluno.getTurma(), Integer.MAX_VALUE);
     }
+
+    @Override
+    protected void addListeners() {
+
+    }
 }

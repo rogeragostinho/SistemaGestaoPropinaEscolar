@@ -80,11 +80,8 @@ public class AlunosPanel extends JPanel {
 
     private void addListeners() {
         buttonAdicionarAluno.addActionListener(e -> {
-            Aluno aluno = AlunoService.getInstance().pegar(1);
-            System.out.println(aluno);
-            //AlunoFormDialog ald = new AlunoCreateDialog(main, new Aluno());
-            AlunoFormDialog ald = new AlunoEditDialog(main, aluno);
-            ald.setVisible(true);
+            new AlunoCreateDialog(main).setVisible(true);
+            carregarTabelaAlunos();
         });
     }
 
