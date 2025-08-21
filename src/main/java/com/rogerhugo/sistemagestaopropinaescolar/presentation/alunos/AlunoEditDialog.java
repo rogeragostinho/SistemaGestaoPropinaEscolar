@@ -1,4 +1,4 @@
-package com.rogerhugo.sistemagestaopropinaescolar.presentation;
+package com.rogerhugo.sistemagestaopropinaescolar.presentation.alunos;
 
 import com.rogerhugo.sistemagestaopropinaescolar.model.Aluno;
 

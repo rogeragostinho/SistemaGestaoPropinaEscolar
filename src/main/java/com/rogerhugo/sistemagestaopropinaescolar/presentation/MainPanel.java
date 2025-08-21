@@ -1,5 +1,7 @@
 package com.rogerhugo.sistemagestaopropinaescolar.presentation;
 
+import com.rogerhugo.sistemagestaopropinaescolar.presentation.alunos.AlunosPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
