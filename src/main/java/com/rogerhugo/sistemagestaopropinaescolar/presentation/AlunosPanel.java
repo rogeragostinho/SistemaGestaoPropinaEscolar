@@ -19,9 +19,7 @@ public class AlunosPanel extends JPanel {
     private JButton buttonRemoverPessoa;
 
     private JPanel panelCenter;
-    private JList<String> listAlunos;
     private JTable tableAlunos;
-    //private DefaultTableModel model;
     
     private JFrame main;
 
@@ -32,7 +30,7 @@ public class AlunosPanel extends JPanel {
         
         initComponents();
         addListeners();
-        carregarListaAlunos();
+        carregarTabelaAlunos();
     }
 
     private void initComponents() {
@@ -72,16 +70,9 @@ public class AlunosPanel extends JPanel {
         panelCenter = new JPanel(new BorderLayout());
         panelCenter.setBorder(new EmptyBorder(30, 0, 0, 0));
 
-        listAlunos = new JList<>();
-        listAlunos.setBorder(new EmptyBorder(5, 7, 7, 5));
-        listAlunos.setPreferredSize(listAlunos.getPreferredSize());
-
-        // tableAlunos
-         //model = new DefaultTableModel();
         tableAlunos = new JTable(/*model*/);
         JScrollPane scroll = new JScrollPane(tableAlunos);
 
-        //panelCenter.add(listAlunos);
         panelCenter.add(scroll);
 
         panelMain.add(panelCenter);
@@ -97,31 +88,14 @@ public class AlunosPanel extends JPanel {
         });
     }
 
-    private void carregarListaAlunos() {
+    private void carregarTabelaAlunos() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nome");
         model.addColumn("Curso");
-
-        //model.addRow(new Object[]{"Roger", 20, "Informática"});
-        //model.addRow(new Object[]{"Maria", 22, "Direito"});
 
         List<Aluno> alunos = new ArrayList<>(AlunoService.getInstance().pegarTodos());
         alunos.forEach(aluno -> model.addRow(new Object[]{aluno.getNome(), aluno.getCurso()}));
 
         tableAlunos.setModel(model);
-
-        /*List<Aluno> alunos = new ArrayList<>(AlunoService.getInstance().pegarTodos());
-        List<String> nomesAlunos = new ArrayList<>();
-        alunos.forEach(aluno -> nomesAlunos.add(aluno.getNome()));
-
-        int index = listAlunos.getSelectedIndex();
-
-        listAlunos.setListData(nomesAlunos.toArray(new String[0]));
-
-        listAlunos.setSelectedIndex(index);
-
-        System.out.println(alunos);
-        System.out.println(nomesAlunos);
-        System.out.println(nomesAlunos.toArray(new String[0]));*/
     }
 }
