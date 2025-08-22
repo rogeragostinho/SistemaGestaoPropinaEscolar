@@ -9,19 +9,16 @@ public class Aluno {
 
     public Aluno() {}
 
-    public Aluno(String nome, String turma, String classe, String curso) {
+    public Aluno(String nome, String classe, String curso, String turma) {
         this.curso = curso;
         this.classe = classe;
         this.turma = turma;
         this.nome = nome;
     }
 
-    public Aluno(int id, String nome, String turma, String classe, String curso) {
+    public Aluno(int id, String nome, String classe, String curso, String turma) {
+        this(nome, classe, curso, turma);
         this.id = id;
-        this.curso = curso;
-        this.classe = classe;
-        this.turma = turma;
-        this.nome = nome;
     }
 
     public Aluno(int id, String nome) {

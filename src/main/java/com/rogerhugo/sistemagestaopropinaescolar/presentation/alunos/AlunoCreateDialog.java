@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class AlunoCreateDialog extends AlunoFormDialog {
     public AlunoCreateDialog(JFrame own) {
-        super(own, "Novo Aluno");
+        super(own, "Novo Aluno", null);
     }
 
 

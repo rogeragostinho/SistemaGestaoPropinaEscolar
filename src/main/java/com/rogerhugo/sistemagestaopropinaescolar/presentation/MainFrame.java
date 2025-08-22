@@ -5,7 +5,7 @@ import com.rogerhugo.sistemagestaopropinaescolar.service.LoginService;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends javax.swing.JFrame {
     private boolean logado;
     private CardLayout card;
     private JPanel container;

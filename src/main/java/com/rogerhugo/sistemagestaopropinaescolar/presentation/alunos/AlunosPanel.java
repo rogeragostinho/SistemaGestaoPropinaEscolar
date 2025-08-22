@@ -15,7 +15,7 @@ public class AlunosPanel extends JPanel {
     private JPanel panelNorth;
 
     private JButton buttonAdicionarAluno;
-    private JButton buttonEditarPessoa;
+    private JButton buttonVerAluno;
     private JButton buttonRemoverPessoa;
 
     private JPanel panelCenter;
@@ -50,13 +50,13 @@ public class AlunosPanel extends JPanel {
 
         buttonAdicionarAluno = new JButton("Novo Aluno");
 
-        buttonEditarPessoa = new JButton("Editar");
+        buttonVerAluno = new JButton("Editar");
         buttonRemoverPessoa = new JButton("Remover");
         //desabilitarButtons();
 
         panelNorth.add(buttonAdicionarAluno);
         panelNorth.add(Box.createGlue());
-        panelNorth.add(buttonEditarPessoa);
+        panelNorth.add(buttonVerAluno);
         panelNorth.add(Box.createHorizontalStrut(5));
         panelNorth.add(buttonRemoverPessoa);
 
@@ -70,7 +70,7 @@ public class AlunosPanel extends JPanel {
         panelCenter = new JPanel(new BorderLayout());
         panelCenter.setBorder(new EmptyBorder(30, 0, 0, 0));
 
-        tableAlunos = new JTable(/*model*/);
+        tableAlunos = new JTable();
         JScrollPane scroll = new JScrollPane(tableAlunos);
 
         panelCenter.add(scroll);
@@ -83,15 +83,24 @@ public class AlunosPanel extends JPanel {
             new AlunoCreateDialog(main).setVisible(true);
             carregarTabelaAlunos();
         });
+
+        buttonVerAluno.addActionListener(e -> {
+            int row = tableAlunos.getSelectedRow();
+            int index = (Integer) tableAlunos.getValueAt(row, 0);
+            Aluno aluno = AlunoService.getInstance().pegar(index);
+            new AlunoShowDialog(main, aluno).setVisible(true);
+            carregarTabelaAlunos();
+        });
     }
 
-    private void carregarTabelaAlunos() {
+    public void carregarTabelaAlunos() {
         DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Id");
         model.addColumn("Nome");
         model.addColumn("Curso");
 
         List<Aluno> alunos = new ArrayList<>(AlunoService.getInstance().pegarTodos());
-        alunos.forEach(aluno -> model.addRow(new Object[]{aluno.getNome(), aluno.getCurso()}));
+        alunos.forEach(aluno -> model.addRow(new Object[]{aluno.getId(), aluno.getNome(), aluno.getCurso()}));
 
         tableAlunos.setModel(model);
     }

@@ -19,26 +19,22 @@ public abstract class AlunoFormDialog extends JDialog {
 
     protected Aluno aluno;
 
-    public AlunoFormDialog(JFrame own, String titulo) {
-        super(own, titulo, true);
+    public AlunoFormDialog(Window own, String titulo, Aluno aluno) {
+        super(own, titulo, ModalityType.APPLICATION_MODAL);
         setLayout(new BorderLayout(60, 40));
 
-        initComponents();
+        this.aluno = aluno;
+
+        initLayout();
         addListeners();
 
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setSize(400, 400);
         setResizable(false);
         setLocationRelativeTo(own);
-        setLocationRelativeTo(null);
     }
 
-    public AlunoFormDialog(JFrame own, String titulo, Aluno aluno) {
-        super(own, titulo);
-        this.aluno = aluno;
-    }
-
-    private void initComponents() {
+    private void initLayout() {
         GridBagLayout layout = new GridBagLayout();
         panelCenter = new JPanel();
         panelCenter.setLayout(layout);
@@ -48,9 +44,7 @@ public abstract class AlunoFormDialog extends JDialog {
         labelCurso = new JLabel("Curso");
         labelTurma = new JLabel("Turma");
 
-        initTextFields();
-
-        button = new JButton("Entrar");
+        initComponents();
 
         addComponent(labelNome, GridBagConstraints.WEST, GridBagConstraints.NONE, GridBagConstraints.REMAINDER, 0, new Insets(40, 40, 3, 40));
         addComponent(textFieldNome, GridBagConstraints.CENTER, GridBagConstraints.BOTH, GridBagConstraints.REMAINDER, 1, new Insets(0, 40, 0, 40));
@@ -69,11 +63,13 @@ public abstract class AlunoFormDialog extends JDialog {
         add(panelCenter, BorderLayout.NORTH);
     }
 
-    protected void initTextFields() {
+    protected void initComponents() {
         textFieldNome = new JTextField(1000);
         textFieldClasse = new JTextField(1000);
         textFieldCurso = new JTextField(1000);
         textFieldTurma = new JTextField(Integer.MAX_VALUE);
+
+        button = new JButton("Adicionar");
     }
 
     public void addComponent(Component component, int anchor, int fill, int gridwidth, int weightx, Insets insets)
