@@ -16,7 +16,7 @@ public class AlunosPanel extends JPanel {
 
     private JButton buttonAdicionarAluno;
     private JButton buttonVerAluno;
-    private JButton buttonRemoverPessoa;
+    private JButton buttonEliminarAluno;
 
     private JPanel panelCenter;
     private JTable tableAlunos;
@@ -51,14 +51,14 @@ public class AlunosPanel extends JPanel {
         buttonAdicionarAluno = new JButton("Novo Aluno");
 
         buttonVerAluno = new JButton("Ver");
-        buttonRemoverPessoa = new JButton("Remover");
+        buttonEliminarAluno = new JButton("Eliminar");
         //desabilitarButtons();
 
         panelNorth.add(buttonAdicionarAluno);
         panelNorth.add(Box.createGlue());
         panelNorth.add(buttonVerAluno);
         panelNorth.add(Box.createHorizontalStrut(5));
-        panelNorth.add(buttonRemoverPessoa);
+        panelNorth.add(buttonEliminarAluno);
 
         panelNorth.setBorder(new EmptyBorder(0, 0, 7, 0));
 
@@ -90,6 +90,15 @@ public class AlunosPanel extends JPanel {
             Aluno aluno = AlunoService.getInstance().pegar(index);
             new AlunoShowDialog(main, aluno).setVisible(true);
             carregarTabelaAlunos();
+        });
+
+        buttonEliminarAluno.addActionListener(e -> {
+            int row = tableAlunos.getSelectedRow();
+            int index = (Integer) tableAlunos.getValueAt(row, 0);
+            if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja eliminar este aluno?", "Escolha uma Opção", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                AlunoService.getInstance().eliminar(index);
+                carregarTabelaAlunos();
+            }
         });
     }
 
