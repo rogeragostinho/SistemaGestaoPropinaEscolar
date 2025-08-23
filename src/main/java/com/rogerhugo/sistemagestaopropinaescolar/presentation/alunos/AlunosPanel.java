@@ -50,7 +50,7 @@ public class AlunosPanel extends JPanel {
 
         buttonAdicionarAluno = new JButton("Novo Aluno");
 
-        buttonVerAluno = new JButton("Editar");
+        buttonVerAluno = new JButton("Ver");
         buttonRemoverPessoa = new JButton("Remover");
         //desabilitarButtons();
 
