@@ -6,6 +6,7 @@ import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -119,6 +120,12 @@ public class AlunosPanel extends JPanel {
         alunos.forEach(aluno -> model.addRow(new Object[]{aluno.getId(), aluno.getNome(), aluno.getCurso()}));
 
         tableAlunos.setModel(model);
+        setWidthColumns();
+    }
+
+    private void setWidthColumns() {
+        TableColumn columnId = tableAlunos.getColumnModel().getColumn(0);
+        columnId.setMaxWidth(30);
     }
 
     private void enableButtons() {
