@@ -29,8 +29,8 @@ public class App {
         //System.out.println(UsuarioService.getInstance().pegarTodos());
 
         //LoginView loginView = new LoginView();
-        //new MainFrame();
-        new TestFrame();
+        new MainFrame();
+        //new TestFrame();
 
         /*Aluno aluno = AlunoService.getInstance().pegar(1);
         AlunoShowDialog al = new AlunoShowDialog(aluno);

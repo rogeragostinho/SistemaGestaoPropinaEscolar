@@ -17,7 +17,9 @@ public class MainFrame extends javax.swing.JFrame {
         card = new CardLayout();
         container = new JPanel(card);
 
-        container.add(new LoginPanel(this), "login");
+        //container.add(new LoginPanel(this), "login");
+        LoginService.getInstance().login("Hugo", "operador");
+        setLogado(true);
 
         add(container);
 

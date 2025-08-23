@@ -110,7 +110,7 @@ public class AlunosPanel extends JPanel {
         });
     }
 
-    public void carregarTabelaAlunos() {
+    private void carregarTabelaAlunos() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id");
         model.addColumn("Nome");

@@ -29,7 +29,7 @@ public class PagamentoRepository extends AbstractRepository<Pagamento>{
 
     @Override
     protected Pagamento mapResultSet(ResultSet rs) throws SQLException {
-        return new Pagamento(rs.getInt("idAluno"), rs.getInt("anoLetivo"), rs.getInt("mesLetivo"), rs.getDouble("valor"), rs.getDate("data"));
+        return new Pagamento(rs.getInt("id"), rs.getInt("idAluno"), rs.getInt("anoLetivo"), rs.getInt("mesLetivo"), rs.getDouble("valor"), rs.getDate("data"));
     }
 
     public List<Pagamento> findAllByIdAluno(int idAluno) {

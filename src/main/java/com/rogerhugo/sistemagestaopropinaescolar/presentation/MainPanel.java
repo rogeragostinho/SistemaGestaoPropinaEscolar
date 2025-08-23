@@ -1,6 +1,7 @@
 package com.rogerhugo.sistemagestaopropinaescolar.presentation;
 
 import com.rogerhugo.sistemagestaopropinaescolar.presentation.alunos.AlunosPanel;
+import com.rogerhugo.sistemagestaopropinaescolar.presentation.pagamentos.PagamentosPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,14 +21,7 @@ public class MainPanel extends JPanel {
         card = new CardLayout();
         container = new JPanel(card);
 
-        JPanel panel1 = new JPanel();
-        panel1.setBackground(Color.RED);
-
-        JPanel panel2 = new JPanel();
-        panel2.setBackground(Color.BLUE);
-
-        container.add(panel1, "panel1");
-        container.add(panel2, "panel2");
+        container.add(new PagamentosPanel(main), "pagamentos");
         container.add(new AlunosPanel(main), "alunos");
 
         add(new MenuPanel(this), BorderLayout.WEST);
