@@ -52,7 +52,7 @@ public class AlunosPanel extends JPanel {
 
         buttonVerAluno = new JButton("Ver");
         buttonEliminarAluno = new JButton("Eliminar");
-        //desabilitarButtons();
+        disableButtons();
 
         panelNorth.add(buttonAdicionarAluno);
         panelNorth.add(Box.createGlue());
@@ -100,6 +100,13 @@ public class AlunosPanel extends JPanel {
                 carregarTabelaAlunos();
             }
         });
+
+        tableAlunos.getSelectionModel().addListSelectionListener(e -> {
+            if (tableAlunos.getSelectedRow() != -1)
+                enableButtons();
+            else
+                disableButtons();
+        });
     }
 
     public void carregarTabelaAlunos() {
@@ -112,5 +119,15 @@ public class AlunosPanel extends JPanel {
         alunos.forEach(aluno -> model.addRow(new Object[]{aluno.getId(), aluno.getNome(), aluno.getCurso()}));
 
         tableAlunos.setModel(model);
+    }
+
+    private void enableButtons() {
+        buttonVerAluno.setEnabled(true);
+        buttonEliminarAluno.setEnabled(true);
+    }
+
+    private void disableButtons() {
+        buttonVerAluno.setEnabled(false);
+        buttonEliminarAluno.setEnabled(false);
     }
 }
