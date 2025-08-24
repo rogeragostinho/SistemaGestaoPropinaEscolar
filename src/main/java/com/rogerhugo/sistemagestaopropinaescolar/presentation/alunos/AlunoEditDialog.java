@@ -12,11 +12,11 @@ public class AlunoEditDialog extends AlunoFormDialog {
     }
 
     @Override
-    protected void initComponents() {
-        textFieldNome = new JTextField(aluno.getNome(), 1000);
-        textFieldClasse = new JTextField(aluno.getClasse(), 1000);
-        textFieldCurso = new JTextField(aluno.getCurso(), 1000);
-        textFieldTurma = new JTextField(aluno.getTurma(), Integer.MAX_VALUE);
+    protected void initOtherComponents() {
+        textFieldNome = new JTextField(entity.getNome(), 1000);
+        textFieldClasse = new JTextField(entity.getClasse(), 1000);
+        textFieldCurso = new JTextField(entity.getCurso(), 1000);
+        textFieldTurma = new JTextField(entity.getTurma(), Integer.MAX_VALUE);
 
         button = new JButton("Salvar");
     }
@@ -24,15 +24,15 @@ public class AlunoEditDialog extends AlunoFormDialog {
     @Override
     protected void addListeners() {
         button.addActionListener(e -> {
-            int id = this.aluno.getId();
+            int id = this.entity.getId();
             String nome = textFieldNome.getText();
             String classe = textFieldClasse.getText();
             String curso = textFieldCurso.getText();
             String turma = textFieldTurma.getText();
 
-            Aluno aluno = new Aluno(nome, classe, curso, turma);
+            Aluno entity = new Aluno(nome, classe, curso, turma);
 
-            if (!AlunoService.getInstance().atualizar(id, aluno))
+            if (!AlunoService.getInstance().atualizar(id, entity))
                 JOptionPane.showMessageDialog(this, "Erro ao salvar dados");
 
             dispose();
