@@ -1,5 +1,6 @@
 package com.rogerhugo.sistemagestaopropinaescolar.presentation.alunos;
 
+import com.rogerhugo.sistemagestaopropinaescolar.db.ConnectionFactory;
 import com.rogerhugo.sistemagestaopropinaescolar.model.Aluno;
 import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
 
@@ -8,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,9 +99,9 @@ public class AlunosPanel extends JPanel {
 
         buttonEliminarAluno.addActionListener(e -> {
             int row = tableAlunos.getSelectedRow();
-            int index = (Integer) tableAlunos.getValueAt(row, 0);
+            int idAluno = (Integer) tableAlunos.getValueAt(row, 0);
             if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja eliminar este aluno?", "Escolha uma Opção", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                AlunoService.getInstance().eliminar(index);
+                AlunoService.getInstance().eliminar(idAluno);
                 carregarTabelaAlunos();
             }
         });
