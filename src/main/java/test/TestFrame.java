@@ -2,6 +2,7 @@ package test;
 
 import com.rogerhugo.sistemagestaopropinaescolar.presentation.alunos.AlunoShowDialog;
 import com.rogerhugo.sistemagestaopropinaescolar.presentation.alunos.AlunosPanel;
+import com.rogerhugo.sistemagestaopropinaescolar.presentation.pagamentos.SearchAlunoDialog;
 
 import javax.swing.*;
 import java.awt.*;

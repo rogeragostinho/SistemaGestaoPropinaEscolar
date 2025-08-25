@@ -8,4 +8,5 @@ public interface GenericRepository<T> {
     List<T> findAll();
     boolean update(int id, T t);
     boolean delete(int id);
+    List<T> search(String field, Object obj);
 }

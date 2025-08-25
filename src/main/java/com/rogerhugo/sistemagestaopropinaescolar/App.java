@@ -3,6 +3,7 @@ package com.rogerhugo.sistemagestaopropinaescolar;
 import com.rogerhugo.sistemagestaopropinaescolar.model.Aluno;
 import com.rogerhugo.sistemagestaopropinaescolar.presentation.MainFrame;
 import com.rogerhugo.sistemagestaopropinaescolar.presentation.alunos.AlunoShowDialog;
+import com.rogerhugo.sistemagestaopropinaescolar.presentation.pagamentos.SearchAlunoDialog;
 import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
 import test.TestFrame;
 
@@ -31,6 +32,8 @@ public class App {
         //LoginView loginView = new LoginView();
         new MainFrame();
         //new TestFrame();
+
+        //new SearchAlunoDialog().setVisible(true);
 
         /*Aluno aluno = AlunoService.getInstance().pegar(1);
         AlunoShowDialog al = new AlunoShowDialog(aluno);

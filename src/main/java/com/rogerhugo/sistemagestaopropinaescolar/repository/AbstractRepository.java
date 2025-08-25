@@ -4,6 +4,7 @@ import com.rogerhugo.sistemagestaopropinaescolar.db.ConnectionFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class AbstractRepository<T> implements GenericRepository<T>{
@@ -112,5 +113,29 @@ public abstract class AbstractRepository<T> implements GenericRepository<T>{
         }
 
         return false;
+    }
+
+    @Override
+    public List<T> search(String field, Object obj) {
+        List<T> list = new ArrayList<>();
+
+        String sql = String.format("SELECT * FROM %s WHERE %s LIKE ?", table, field);
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);)
+        {
+            ps.setObject(1, "%" + obj + "%");
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next())
+                list.add(mapResultSet(rs));
+
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Collections.emptyList(); // retorna uma lista vazia
     }
 }
