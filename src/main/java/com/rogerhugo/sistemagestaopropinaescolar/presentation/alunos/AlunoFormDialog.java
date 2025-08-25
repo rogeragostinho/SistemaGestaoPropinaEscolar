@@ -16,7 +16,6 @@ public abstract class AlunoFormDialog extends AbstractFormDialog<Aluno> {
     private JLabel labelCurso;
     private JLabel labelTurma;
     protected JButton button;
-    private JPanel panelCenter;
 
     public AlunoFormDialog(Window own, String titulo, Aluno aluno) {
         super(own, titulo, aluno);
