@@ -21,11 +21,11 @@ public class PagamentoRepository extends AbstractRepository<Pagamento>{
 
     @Override
     protected void setCreateStatement(PreparedStatement ps, Pagamento pagamento) throws SQLException {
-        ps.setInt(1, pagamento.getIdAluno());
-        ps.setInt(2, pagamento.getAnoLetivo());
+        ps.setDate(1, DateUtils.localDateToSqlDate(pagamento.getData()));
+        ps.setDouble(2, pagamento.getValor());
         ps.setInt(3, pagamento.getMesLetivo());
-        ps.setDouble(4, pagamento.getValor());
-        ps.setDate(5, DateUtils.localDateToSqlDate(pagamento.getData()));
+        ps.setInt(4, pagamento.getAnoLetivo());
+        ps.setInt(5, pagamento.getIdAluno());
     }
 
     @Override
