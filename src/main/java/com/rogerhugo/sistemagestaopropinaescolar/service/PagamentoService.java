@@ -17,6 +17,6 @@ public class PagamentoService extends AbstractService<Pagamento, PagamentoReposi
     }
 
     public List<Pagamento> consultarHistorico(int idAluno) {
-        return null;
+        return repository.search("idAluno", idAluno);
     }
 }
