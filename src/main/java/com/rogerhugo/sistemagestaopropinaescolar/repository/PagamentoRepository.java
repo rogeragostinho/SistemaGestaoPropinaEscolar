@@ -2,6 +2,7 @@ package com.rogerhugo.sistemagestaopropinaescolar.repository;
 
 import com.rogerhugo.sistemagestaopropinaescolar.db.ConnectionFactory;
 import com.rogerhugo.sistemagestaopropinaescolar.model.Pagamento;
+import com.rogerhugo.sistemagestaopropinaescolar.utils.DateUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,12 +25,12 @@ public class PagamentoRepository extends AbstractRepository<Pagamento>{
         ps.setInt(2, pagamento.getAnoLetivo());
         ps.setInt(3, pagamento.getMesLetivo());
         ps.setDouble(4, pagamento.getValor());
-        ps.setDate(5, (Date) pagamento.getData());
+        ps.setDate(5, DateUtils.localDateToSqlDate(pagamento.getData()));
     }
 
     @Override
     protected Pagamento mapResultSet(ResultSet rs) throws SQLException {
-        return new Pagamento(rs.getInt("id"), rs.getInt("idAluno"), rs.getInt("anoLetivo"), rs.getInt("mesLetivo"), rs.getDouble("valor"), rs.getDate("data"));
+        return new Pagamento(rs.getInt("id"), rs.getInt("idAluno"), rs.getInt("anoLetivo"), rs.getInt("mesLetivo"), rs.getDouble("valor"), rs.getDate("data").toLocalDate());
     }
 
     public List<Pagamento> findAllByIdAluno(int idAluno) {
