@@ -2,6 +2,7 @@ package com.rogerhugo.sistemagestaopropinaescolar.repository;
 
 import com.rogerhugo.sistemagestaopropinaescolar.db.ConnectionFactory;
 import com.rogerhugo.sistemagestaopropinaescolar.model.Pagamento;
+import com.rogerhugo.sistemagestaopropinaescolar.presentation.enums.MesDoAno;
 import com.rogerhugo.sistemagestaopropinaescolar.utils.DateUtils;
 
 import java.sql.*;
@@ -23,14 +24,20 @@ public class PagamentoRepository extends AbstractRepository<Pagamento>{
     protected void setCreateStatement(PreparedStatement ps, Pagamento pagamento) throws SQLException {
         ps.setDate(1, DateUtils.localDateToSqlDate(pagamento.getData()));
         ps.setDouble(2, pagamento.getValor());
-        ps.setInt(3, pagamento.getMesLetivo());
+        ps.setInt(3, pagamento.getMesLetivo().getNumero());
         ps.setInt(4, pagamento.getAnoLetivo());
         ps.setInt(5, pagamento.getIdAluno());
     }
 
     @Override
     protected Pagamento mapResultSet(ResultSet rs) throws SQLException {
-        return new Pagamento(rs.getInt("id"), rs.getInt("idAluno"), rs.getInt("anoLetivo"), rs.getInt("mesLetivo"), rs.getDouble("valor"), rs.getDate("data").toLocalDate());
+        return new Pagamento(rs.getInt("id"),
+                rs.getInt("idAluno"),
+                rs.getInt("anoLetivo"),
+                MesDoAno.mesDoAnoByNumero(rs.getInt("mesLetivo")),
+                rs.getDouble("valor"),
+                rs.getDate("data").toLocalDate()
+        );
     }
 
     public List<Pagamento> findAllByIdAluno(int idAluno) {

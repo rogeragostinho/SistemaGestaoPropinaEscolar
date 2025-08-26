@@ -10,7 +10,6 @@ public class AlunoCreateDialog extends AlunoFormDialog {
         super(own, "Novo Aluno", null);
     }
 
-
     @Override
     protected void addListeners() {
         button.addActionListener(e -> {

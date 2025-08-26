@@ -1,16 +1,18 @@
 package com.rogerhugo.sistemagestaopropinaescolar.model;
 
+import com.rogerhugo.sistemagestaopropinaescolar.presentation.enums.MesDoAno;
+
 import java.time.LocalDate;
 
 public class Pagamento {
     private int id;
     private LocalDate data;
     private double valor;
-    private int mesLetivo; //enum
+    private MesDoAno mesLetivo; //enum
     private int anoLetivo;
     private int idAluno;
 
-    public Pagamento(int idAluno, int anoLetivo, int mesLetivo, double valor, LocalDate data) {
+    public Pagamento(int idAluno, int anoLetivo, MesDoAno mesLetivo, double valor, LocalDate data) {
         this.idAluno = idAluno;
         this.anoLetivo = anoLetivo;
         this.mesLetivo = mesLetivo;
@@ -18,7 +20,7 @@ public class Pagamento {
         this.data = data;
     }
 
-    public Pagamento(int id, int idAluno, int anoLetivo, int mesLetivo, double valor, LocalDate data) {
+    public Pagamento(int id, int idAluno, int anoLetivo, MesDoAno mesLetivo, double valor, LocalDate data) {
         this.id = id;
         this.idAluno = idAluno;
         this.anoLetivo = anoLetivo;
@@ -63,11 +65,11 @@ public class Pagamento {
         this.anoLetivo = anoLetivo;
     }
 
-    public int getMesLetivo() {
+    public MesDoAno getMesLetivo() {
         return mesLetivo;
     }
 
-    public void setMesLetivo(int mesLetivo) {
+    public void setMesLetivo(MesDoAno mesLetivo) {
         this.mesLetivo = mesLetivo;
     }
 

@@ -1,6 +1,7 @@
 package com.rogerhugo.sistemagestaopropinaescolar.presentation.pagamentos;
 
 import com.rogerhugo.sistemagestaopropinaescolar.model.Pagamento;
+import com.rogerhugo.sistemagestaopropinaescolar.presentation.enums.MesDoAno;
 import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
 import com.rogerhugo.sistemagestaopropinaescolar.service.PagamentoService;
 
@@ -11,12 +12,8 @@ import java.util.Date;
 
 public class PagamentoCreateDialog extends PagamentoFormDialog {
 
-    private int idAluno;
-
     public PagamentoCreateDialog(Window own, int idAluno) {
-        super(own, "Novo pagamento", null);
-
-        this.idAluno = idAluno;
+        super(own, "Novo pagamento", null, idAluno);
     }
 
     @Override
@@ -24,7 +21,7 @@ public class PagamentoCreateDialog extends PagamentoFormDialog {
         button.addActionListener(e -> {
             LocalDate data = LocalDate.parse(textFieldData.getText());
             double valor = Double.parseDouble(textFieldValor.getText());
-            int mesLetivo = Integer.parseInt(textFieldMesLetivo.getText());
+            MesDoAno mesLetivo = MesDoAno.mesDoAnoByNome((String)comboBoxMesLetivo.getSelectedItem());
             int anoLetivo = Integer.parseInt(textFieldAnoLetivo.getText());
 
             Pagamento pagamento = new Pagamento(idAluno, anoLetivo, mesLetivo, valor, data);
