@@ -16,12 +16,16 @@ public class MenuPanel extends JPanel {
 
         JButton button1 = new JButton("Pagamentos");
         JButton button2 = new JButton("Alunos");
+        JButton button3 = new JButton("Cursos");
 
         add(button1);
         add(button2);
+        add(button3);
 
         button1.addActionListener(e -> main.show("pagamentos"));
 
         button2.addActionListener(e -> main.show("alunos"));
+
+        button3.addActionListener(e -> main.show("cursos"));
     }
 }
