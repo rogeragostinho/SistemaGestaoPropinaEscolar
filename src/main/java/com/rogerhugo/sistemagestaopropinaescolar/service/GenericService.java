@@ -8,4 +8,8 @@ public interface GenericService<T> {
     List<T> pegarTodos();
     boolean atualizar(int id, T t);
     boolean eliminar(int id);
+    <U> List<T> pesquisar(String campo, U valor);
+    <U> List<T> pegarTodosPelo(String campo, U valor);
+    <U> T pegarPelo(String campo, U valor);
+
 }
