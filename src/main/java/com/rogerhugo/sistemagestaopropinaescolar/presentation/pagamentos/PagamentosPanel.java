@@ -31,6 +31,7 @@ public class PagamentosPanel extends JPanel {
         initComponents();
         addListeners();
         loadTable();
+        disableButtons();
     }
 
     private void initComponents() {
@@ -83,6 +84,30 @@ public class PagamentosPanel extends JPanel {
             new SearchAlunoDialog(main).setVisible(true);
             loadTable();
         });
+        
+        buttonEliminar.addActionListener(e -> {
+            int row = table.getSelectedRow();
+            int id = (Integer) table.getValueAt(row, 0);
+            if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja eliminar este registro?", "Escolha uma Opção", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                PagamentoService.getInstance().eliminar(id);
+                loadTable();
+            }
+        });
+
+        buttonVerDetalhes.addActionListener(e -> {
+            int row = table.getSelectedRow();
+            int id = (Integer) table.getValueAt(row, 0);
+            Pagamento pagamento = PagamentoService.getInstance().pegar(id);
+            new PagamentoShowDialog(main, pagamento).setVisible(true);
+            loadTable();
+        });
+
+        table.getSelectionModel().addListSelectionListener(e -> {
+            if (table.getSelectedRow() != -1)
+                enableButtons();
+            else
+                disableButtons();
+        });
     }
 
     private void loadTable() {
@@ -101,5 +126,15 @@ public class PagamentosPanel extends JPanel {
     private void setWidthColumns() {
         TableColumn columnId = table.getColumnModel().getColumn(0);
         columnId.setMaxWidth(30);
+    }
+
+    private void enableButtons() {
+        buttonVerDetalhes.setEnabled(true);
+        buttonEliminar.setEnabled(true);
+    }
+
+    private void disableButtons() {
+        buttonVerDetalhes.setEnabled(false);
+        buttonEliminar.setEnabled(false);
     }
 }
