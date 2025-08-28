@@ -2,7 +2,7 @@ package com.rogerhugo.sistemagestaopropinaescolar.repository;
 
 import com.rogerhugo.sistemagestaopropinaescolar.db.ConnectionFactory;
 import com.rogerhugo.sistemagestaopropinaescolar.model.Pagamento;
-import com.rogerhugo.sistemagestaopropinaescolar.presentation.enums.MesDoAno;
+import com.rogerhugo.sistemagestaopropinaescolar.enums.MesDoAno;
 import com.rogerhugo.sistemagestaopropinaescolar.utils.DateUtils;
 
 import java.sql.*;
