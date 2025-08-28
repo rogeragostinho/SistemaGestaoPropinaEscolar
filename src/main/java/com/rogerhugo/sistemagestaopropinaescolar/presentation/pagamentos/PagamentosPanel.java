@@ -79,7 +79,10 @@ public class PagamentosPanel extends JPanel {
     }
 
     private void addListeners() {
-        buttonAdicionar.addActionListener(e -> new SearchAlunoDialog(main).setVisible(true));
+        buttonAdicionar.addActionListener(e -> {
+            new SearchAlunoDialog(main).setVisible(true);
+            loadTable();
+        });
     }
 
     private void loadTable() {
