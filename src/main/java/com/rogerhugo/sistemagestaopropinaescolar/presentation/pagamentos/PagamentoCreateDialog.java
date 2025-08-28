@@ -1,14 +1,12 @@
 package com.rogerhugo.sistemagestaopropinaescolar.presentation.pagamentos;
 
 import com.rogerhugo.sistemagestaopropinaescolar.model.Pagamento;
-import com.rogerhugo.sistemagestaopropinaescolar.presentation.enums.MesDoAno;
-import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
+import com.rogerhugo.sistemagestaopropinaescolar.enums.MesDoAno;
 import com.rogerhugo.sistemagestaopropinaescolar.service.PagamentoService;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class PagamentoCreateDialog extends PagamentoFormDialog {
 

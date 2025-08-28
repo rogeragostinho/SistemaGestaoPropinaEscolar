@@ -2,7 +2,7 @@ package com.rogerhugo.sistemagestaopropinaescolar.presentation.pagamentos;
 
 import com.rogerhugo.sistemagestaopropinaescolar.model.Pagamento;
 import com.rogerhugo.sistemagestaopropinaescolar.presentation.components.AbstractFormDialog;
-import com.rogerhugo.sistemagestaopropinaescolar.presentation.enums.MesDoAno;
+import com.rogerhugo.sistemagestaopropinaescolar.enums.MesDoAno;
 import com.rogerhugo.sistemagestaopropinaescolar.service.PagamentoService;
 
 import javax.swing.*;
