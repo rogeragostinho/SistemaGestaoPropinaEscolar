@@ -1,6 +1,6 @@
 package com.rogerhugo.sistemagestaopropinaescolar.model;
 
-import com.rogerhugo.sistemagestaopropinaescolar.presentation.enums.MesDoAno;
+import com.rogerhugo.sistemagestaopropinaescolar.enums.MesDoAno;
 
 import java.time.LocalDate;
 
