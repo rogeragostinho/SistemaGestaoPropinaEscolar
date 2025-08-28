@@ -39,7 +39,7 @@ public abstract class AbstractRepository<T> implements GenericRepository<T>{
     }
 
     @Override
-    public T findById(int id) {
+    public T find(int id) {
         String sql = String.format("SELECT * FROM %s WHERE id = ?", table);
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -116,7 +116,7 @@ public abstract class AbstractRepository<T> implements GenericRepository<T>{
     }
 
     @Override
-    public List<T> search(String field, Object obj) {
+    public <U> List<T> search(String field, U value) {
         List<T> list = new ArrayList<>();
 
         String sql = String.format("SELECT * FROM %s WHERE %s LIKE ?", table, field);
@@ -124,7 +124,7 @@ public abstract class AbstractRepository<T> implements GenericRepository<T>{
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);)
         {
-            ps.setObject(1, "%" + obj + "%");
+            ps.setObject(1, "%" + value + "%");
 
             ResultSet rs = ps.executeQuery();
 
@@ -137,5 +137,49 @@ public abstract class AbstractRepository<T> implements GenericRepository<T>{
         }
 
         return Collections.emptyList(); // retorna uma lista vazia
+    }
+
+    @Override
+    public <U> List<T> findAllBy(String field, U value) {
+        List<T> list = new ArrayList<>();
+
+        String sql = String.format("SELECT * FROM %s WHERE %s", table, field);
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);)
+        {
+            ps.setObject(1, value);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next())
+                list.add(mapResultSet(rs));;
+
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public <U> T findBy(String field, U value) {
+        String sql = String.format("SELECT * FROM %s WHERE %s = ?", table, field);
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);)
+        {
+            ps.setObject(1, value);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next())
+                return mapResultSet(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
