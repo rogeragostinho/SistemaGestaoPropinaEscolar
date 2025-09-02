@@ -3,6 +3,8 @@ package com.rogerhugo.sistemagestaopropinaescolar.presentation.pagamentos;
 import com.rogerhugo.sistemagestaopropinaescolar.model.Pagamento;
 import com.rogerhugo.sistemagestaopropinaescolar.presentation.components.AbstractFormDialog;
 import com.rogerhugo.sistemagestaopropinaescolar.enums.MesDoAno;
+import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
+import com.rogerhugo.sistemagestaopropinaescolar.service.CursoService;
 import com.rogerhugo.sistemagestaopropinaescolar.service.PagamentoService;
 
 import javax.swing.*;
@@ -64,7 +66,10 @@ public abstract class PagamentoFormDialog extends AbstractFormDialog<Pagamento> 
         LocalDate data = LocalDate.now();
         textFieldData = new JTextField(data.toString(), 1000);
         textFieldData.setEditable(false);
-        textFieldValor = new JTextField(1000);
+        System.out.println(idAluno);
+        double valorPropina = CursoService.getInstance().pegar(AlunoService.getInstance().pegar(idAluno).getIdCurso()).getValorPropina();
+        textFieldValor = new JTextField("" + valorPropina);
+        textFieldValor.setEditable(false);
 
         // meses
 

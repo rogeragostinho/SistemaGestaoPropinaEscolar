@@ -3,6 +3,7 @@ package com.rogerhugo.sistemagestaopropinaescolar.presentation.pagamentos;
 import com.rogerhugo.sistemagestaopropinaescolar.model.Aluno;
 import com.rogerhugo.sistemagestaopropinaescolar.model.Pagamento;
 import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
+import com.rogerhugo.sistemagestaopropinaescolar.service.CursoService;
 import com.rogerhugo.sistemagestaopropinaescolar.service.PagamentoService;
 
 import javax.swing.*;
@@ -78,7 +79,9 @@ public class SearchAlunoDialog extends JDialog {
         model.addColumn("Curso");
 
         List<Aluno> alunos = new ArrayList<>(AlunoService.getInstance().pesquisar(nome));
-        alunos.forEach(aluno -> model.addRow(new Object[]{aluno.getId(), aluno.getNome(), aluno.getCurso()}));
+        alunos.forEach(aluno -> model.addRow(new Object[]{aluno.getId(), aluno.getNome(),
+                CursoService.getInstance().pegar(aluno.getIdCurso()).getNome()
+        }));
 
         table.setModel(model);
         setWidthColumns();
@@ -136,6 +139,7 @@ public class SearchAlunoDialog extends JDialog {
         button.addActionListener(e -> {
             int row = table.getSelectedRow();
             int idAluno = (Integer) table.getValueAt(row, 0);
+            System.out.println(idAluno);
             new PagamentoCreateDialog(this, idAluno).setVisible(true);
             loadTable("");
         });

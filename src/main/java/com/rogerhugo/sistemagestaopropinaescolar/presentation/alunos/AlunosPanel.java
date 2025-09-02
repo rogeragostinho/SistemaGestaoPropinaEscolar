@@ -3,6 +3,7 @@ package com.rogerhugo.sistemagestaopropinaescolar.presentation.alunos;
 import com.rogerhugo.sistemagestaopropinaescolar.db.ConnectionFactory;
 import com.rogerhugo.sistemagestaopropinaescolar.model.Aluno;
 import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
+import com.rogerhugo.sistemagestaopropinaescolar.service.CursoService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -121,7 +122,9 @@ public class AlunosPanel extends JPanel {
         model.addColumn("Curso");
 
         List<Aluno> alunos = new ArrayList<>(AlunoService.getInstance().pegarTodos());
-        alunos.forEach(aluno -> model.addRow(new Object[]{aluno.getId(), aluno.getNome(), aluno.getCurso()}));
+        alunos.forEach(aluno -> model.addRow(new Object[]{aluno.getId(), aluno.getNome(),
+                CursoService.getInstance().pegar(aluno.getIdCurso()).getNome()
+        }));
 
         tableAlunos.setModel(model);
         setWidthColumns();

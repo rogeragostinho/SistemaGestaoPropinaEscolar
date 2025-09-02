@@ -9,7 +9,7 @@ public class AlunoRepository extends AbstractRepository<Aluno> {
     private static AlunoRepository instance = new AlunoRepository();
 
     private AlunoRepository() {
-        super("alunos", "nome, classe, curso, turma");
+        super("alunos", "nome, classe, idCurso, turma");
     }
 
     public static AlunoRepository getInstance() {
@@ -20,12 +20,12 @@ public class AlunoRepository extends AbstractRepository<Aluno> {
     protected void setCreateStatement(PreparedStatement ps, Aluno aluno) throws SQLException {
         ps.setString(1, aluno.getNome());
         ps.setString(2, aluno.getClasse());
-        ps.setString(3, aluno.getCurso());
+        ps.setInt(3, aluno.getIdCurso());
         ps.setString(4, aluno.getTurma());
     }
 
     @Override
     protected Aluno mapResultSet(ResultSet rs) throws SQLException {
-        return new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("classe"), rs.getString("curso"), rs.getString("turma"));
+        return new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("classe"), rs.getInt("idCurso"), rs.getString("turma"));
     }
 }

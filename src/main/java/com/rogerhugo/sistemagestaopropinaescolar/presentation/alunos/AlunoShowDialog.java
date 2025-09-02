@@ -1,8 +1,10 @@
 package com.rogerhugo.sistemagestaopropinaescolar.presentation.alunos;
 
 import com.rogerhugo.sistemagestaopropinaescolar.model.Aluno;
+import com.rogerhugo.sistemagestaopropinaescolar.model.Curso;
 import com.rogerhugo.sistemagestaopropinaescolar.presentation.MainFrame;
 import com.rogerhugo.sistemagestaopropinaescolar.service.AlunoService;
+import com.rogerhugo.sistemagestaopropinaescolar.service.CursoService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -37,7 +39,8 @@ public class AlunoShowDialog extends JDialog {
 
         labelNome = new JLabel("Nome: " + this.aluno.getNome());
         labelClasse = new JLabel("Classe: " + this.aluno.getClasse());
-        labelCurso = new JLabel("Curso: " + this.aluno.getCurso());
+        Curso curso = CursoService.getInstance().pegar(aluno.getIdCurso());
+        labelCurso = new JLabel("Curso: " + curso.getNome());
         labelTurma = new JLabel("Turma: " + this.aluno.getTurma());
 
         panel2.add(labelNome);
@@ -74,7 +77,8 @@ public class AlunoShowDialog extends JDialog {
         aluno = AlunoService.getInstance().pegar(aluno.getId());
         labelNome.setText("Nome: " + this.aluno.getNome());
         labelClasse.setText("Classe: " + this.aluno.getClasse());
-        labelCurso.setText("Curso: " + this.aluno.getCurso());
+        Curso curso = CursoService.getInstance().pegar(aluno.getIdCurso());
+        labelCurso.setText("Curso: " + curso.getNome());
         labelTurma.setText("Turma: " + this.aluno.getTurma());
     }
 }

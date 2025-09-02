@@ -1,15 +1,19 @@
 package com.rogerhugo.sistemagestaopropinaescolar.presentation.alunos;
 
 import com.rogerhugo.sistemagestaopropinaescolar.model.Aluno;
+import com.rogerhugo.sistemagestaopropinaescolar.model.Curso;
 import com.rogerhugo.sistemagestaopropinaescolar.presentation.components.AbstractFormDialog;
+import com.rogerhugo.sistemagestaopropinaescolar.service.CursoService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AlunoFormDialog extends AbstractFormDialog<Aluno> {
     protected JTextField textFieldNome;
     protected JTextField textFieldClasse;
-    protected JTextField textFieldCurso;
+    protected JComboBox comboBoxCurso;
     protected JTextField textFieldTurma;
     private JLabel labelNome;
     private JLabel labelClasse;
@@ -34,7 +38,13 @@ public abstract class AlunoFormDialog extends AbstractFormDialog<Aluno> {
     protected void initOtherComponents() {
         textFieldNome = new JTextField(1000);
         textFieldClasse = new JTextField(1000);
-        textFieldCurso = new JTextField(1000);
+
+        List<Curso> cursos = CursoService.getInstance().pegarTodos();
+        String[] nomes = new String[cursos.size()];
+        for (int i = 0; i < cursos.size(); i++)
+            nomes[i] = cursos.get(i).getNome();
+
+        comboBoxCurso = new JComboBox(nomes);
         textFieldTurma = new JTextField(Integer.MAX_VALUE);
 
         button = new JButton("Adicionar");
@@ -49,7 +59,7 @@ public abstract class AlunoFormDialog extends AbstractFormDialog<Aluno> {
         addComponent(textFieldClasse, GridBagConstraints.CENTER, GridBagConstraints.BOTH, GridBagConstraints.REMAINDER, 1, new Insets(0, 40, 0, 40));
 
         addComponent(labelCurso, GridBagConstraints.WEST, GridBagConstraints.NONE, GridBagConstraints.REMAINDER, 0, new Insets(15, 40, 3, 40));
-        addComponent(textFieldCurso, GridBagConstraints.CENTER, GridBagConstraints.BOTH, GridBagConstraints.REMAINDER, 1, new Insets(0, 40, 0, 40));
+        addComponent(comboBoxCurso, GridBagConstraints.CENTER, GridBagConstraints.BOTH, GridBagConstraints.REMAINDER, 1, new Insets(0, 40, 0, 40));
 
         addComponent(labelTurma, GridBagConstraints.WEST, GridBagConstraints.NONE, GridBagConstraints.REMAINDER, 0, new Insets(15, 40, 3, 40));
         addComponent(textFieldTurma, GridBagConstraints.CENTER, GridBagConstraints.BOTH, GridBagConstraints.REMAINDER, 1, new Insets(0, 40, 0, 40));

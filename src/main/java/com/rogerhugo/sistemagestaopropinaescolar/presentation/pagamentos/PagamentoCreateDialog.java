@@ -10,8 +10,12 @@ import java.time.LocalDate;
 
 public class PagamentoCreateDialog extends PagamentoFormDialog {
 
+    protected int idAluno;
+
     public PagamentoCreateDialog(Window own, int idAluno) {
         super(own, "Novo pagamento", null, idAluno);
+
+        this.idAluno = idAluno;
     }
 
     @Override

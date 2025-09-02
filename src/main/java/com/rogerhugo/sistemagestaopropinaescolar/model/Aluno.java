@@ -5,19 +5,19 @@ public class Aluno {
     private String nome;
     private String turma;
     private String classe;
-    private String curso;
+    private int idCurso;
 
     public Aluno() {}
 
-    public Aluno(String nome, String classe, String curso, String turma) {
-        this.curso = curso;
+    public Aluno(String nome, String classe, int idCurso, String turma) {
+        this.idCurso = idCurso;
         this.classe = classe;
         this.turma = turma;
         this.nome = nome;
     }
 
-    public Aluno(int id, String nome, String classe, String curso, String turma) {
-        this(nome, classe, curso, turma);
+    public Aluno(int id, String nome, String classe, int idCurso, String turma) {
+        this(nome, classe, idCurso, turma);
         this.id = id;
     }
 
@@ -33,7 +33,7 @@ public class Aluno {
                 ", nome='" + nome + '\'' +
                 ", turma='" + turma + '\'' +
                 ", classe='" + classe + '\'' +
-                ", curso='" + curso + '\'' +
+                ", idCurso='" + idCurso + '\'' +
                 '}';
     }
 
@@ -69,11 +69,11 @@ public class Aluno {
         this.classe = classe;
     }
 
-    public String getCurso() {
-        return curso;
+    public int getIdCurso() {
+        return idCurso;
     }
 
-    public void setCurso(String curso) {
-        this.curso = curso;
+    public void setIdCurso(int idCurso) {
+        this.idCurso = idCurso;
     }
 }
